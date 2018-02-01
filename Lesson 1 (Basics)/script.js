@@ -24,7 +24,9 @@
         lat: 37.791350,
         lng: -122.435883,
         visible: true,
-        draggable: true
+        draggable: true,
+        id: 100,
+        name: 'ivan'
     });
 
 }(window, window.Mapster || (window.Mapster = {})));
