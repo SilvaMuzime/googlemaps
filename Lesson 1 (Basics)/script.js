@@ -20,4 +20,11 @@
             console.log(e);
     });
 
+    map.addMarker({
+        lat: 37.791350,
+        lng: -122.435883,
+        visible: true,
+        draggable: true
+    });
+
 }(window, window.Mapster || (window.Mapster = {})));
