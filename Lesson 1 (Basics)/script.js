@@ -16,17 +16,36 @@
 
     map = mapster.create(element, options);
     
-    map._on('click', function(e) {
-            console.log(e);
-    });
-
-    map.addMarker({
+    var marker = map.addMarker({
         lat: 37.791350,
         lng: -122.435883,
         visible: true,
         draggable: true,
         id: 100,
-        name: 'ivan'
+        content: 'I miss you',
+        event: {
+            name: 'click',
+            callback: function(marker) {
+                console.log("i'm clicked");
+            }
+        }
     });
 
+    var marker1 = map.addMarker({
+        lat: 37.791352,
+        lng: -122.435885,
+        visible: true,
+        draggable: true,
+        id: 101,
+        content: 'I miss you',
+        event: {
+            name: 'click',
+            callback: function (marker) {
+                console.log("i'm clicked");
+            }
+        }
+    });
+    map._removeMarker(marker1);
+
+    console.log(map.markers);
 }(window, window.Mapster || (window.Mapster = {})));
