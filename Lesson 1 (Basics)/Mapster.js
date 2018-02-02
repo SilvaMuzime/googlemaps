@@ -1,4 +1,4 @@
-(function(window, google) {
+(function(window, google, List) {
     
     var Mapster = (function() {
         function Mapster(element, opts) {
