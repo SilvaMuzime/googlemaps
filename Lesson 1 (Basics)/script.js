@@ -21,7 +21,7 @@
         lng: -122.435883,
         visible: true,
         draggable: true,
-        id: 100,
+        id: 21,
         content: 'I miss you',
         event: {
             name: 'click',
@@ -36,7 +36,7 @@
         lng: -122.435885,
         visible: true,
         draggable: true,
-        id: 101,
+        id: 2,
         content: 'I miss you',
         event: {
             name: 'click',
@@ -45,7 +45,11 @@
             }
         }
     });
-    map._removeMarker(marker1);
-
+    
+    map.removeBy(function(marker) {
+        return marker.id === 2; 
+    });
+    
     console.log(map.markers);
+
 }(window, window.Mapster || (window.Mapster = {})));
