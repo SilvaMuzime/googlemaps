@@ -4,6 +4,7 @@
         function Mapster(element, opts) {
             this.gMap = new google.maps.Map(element, opts);
             this.markers = List.create();
+            this.markerClusterer = new MarkerClusterer(this.gMap, []);
         }
 
         Mapster.prototype = {
@@ -22,6 +23,7 @@
                 };
 
                 marker = this._createMarker(opts);
+                this.markerClusterer.addMarker(marker);
                 this.markers.add(marker);
                 if(opts.event){
                     this._on({

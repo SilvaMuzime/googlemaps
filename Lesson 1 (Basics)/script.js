@@ -46,9 +46,19 @@
         }
     });
     
-    map.removeBy(function(marker) {
-        return marker.id === 2; 
-    });
+
+    for(var i = 0; i < 40; i++){
+        map.addMarker({
+            lat: 37.78135 + Math.random(),
+            lng: -122.485883 + Math.random(),
+            content: 'i like pizza'
+        });
+    }
+
+
+    // map.removeBy(function(marker) {
+    //     return marker.id === 2; 
+    // });
     
     console.log(map.markers);
 

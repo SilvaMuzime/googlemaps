@@ -12,6 +12,21 @@
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         maxZoom: 9,
         minZoom: 5
+        // cluster: {
+        //     options: {
+        //         styles: [{
+        //             url: 'https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/src/markerclusterer.js',
+        //             height: 56,
+        //             width: 55,
+        //             textColor: '#FFF',
+        //             textSize: 18
+        //         },{
+        //             url: 'https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/src/markerclusterer.js',
+        //             height: 56,
+        //             width: 55
+        //         }]
+        //     }
+        // }
         // zoomControlOptions : {
         //     position: google.maps.ControlPosition.TOP_LEFT,
         //     style: google.maps.ZoomControlStyle.DEFAULT
@@ -23,4 +38,4 @@
         
     };
 
-}(window,google,window.Mapster || (window.Mapster = {})))
+}(window,google,window.Mapster || (window.Mapster = {})));
