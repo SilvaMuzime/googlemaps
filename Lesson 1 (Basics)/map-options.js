@@ -9,9 +9,9 @@
         disableDefaultUI: false,
         scrollwheel: true,
         draggable: true,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        maxZoom: 9,
-        minZoom: 5
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+        // maxZoom: 9,
+        // minZoom: 5
         // cluster: {
         //     options: {
         //         styles: [{

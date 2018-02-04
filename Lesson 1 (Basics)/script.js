@@ -15,50 +15,37 @@
     element = document.getElementById("map"),
 
     map = mapster.create(element, options);
-    
-    var marker = map.addMarker({
-        lat: 37.791350,
-        lng: -122.435883,
-        visible: true,
-        draggable: true,
-        id: 21,
-        content: 'I miss you',
-        event: {
-            name: 'click',
-            callback: function(marker) {
-                console.log("i'm clicked");
-            }
-        }
-    });
 
-    var marker1 = map.addMarker({
-        lat: 37.791352,
-        lng: -122.435885,
-        visible: true,
-        draggable: true,
-        id: 2,
-        content: 'I miss you',
-        event: {
-            name: 'click',
-            callback: function (marker) {
-                console.log("i'm clicked");
-            }
-        }
-    });
-    
 
-    for(var i = 0; i < 40; i++){
+    for(var i = 0; i < 10; i++) {
         map.addMarker({
             lat: 37.78135 + Math.random(),
             lng: -122.485883 + Math.random(),
-            content: 'i like pizza'
+            content: 'I miss you',
+            events: [{
+                name: 'click',
+                callback: function () {
+                    console.log("i'm clicked");
+                }
+            }, {
+                name: 'drag',
+                callback: function () {
+                    console.log('drag me more');
+                }
+            }, {
+                name: 'mouseover',
+                callback: function() {
+
+                }
+            }],
+            animation: google.maps.Animation.DROP
         });
     }
 
 
-    // map.removeBy(function(marker) {
-    //     return marker.id === 2; 
-    // });
+     // map.removeBy(function(marker) {
+     //     return marker.content === 'i like pizza';
+     // });
     
     console.log(map.markers);
 
