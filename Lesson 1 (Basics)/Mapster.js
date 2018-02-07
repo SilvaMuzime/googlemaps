@@ -8,6 +8,14 @@
         }
 
         Mapster.prototype = {
+            zoom: function(level) {
+                if(level){
+                    this.gMap.setZoom(level);
+                }
+                else{
+                    this.gMap.getZoom();
+                }
+            },
             _on: function(opts) {
                 var self = this;
                 google.maps.event.addListener(opts.obj, opts.event, function(e) {
