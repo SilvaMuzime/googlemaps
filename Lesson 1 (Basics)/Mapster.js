@@ -28,13 +28,7 @@
                 this.markerClusterer.addMarker(marker);
                 this.markers.add(marker);
                 if(opts.events){
-                    opts.events.forEach(function(event) {
-                       self._on({
-                          obj: marker,
-                          event: event.name,
-                          callback: event.callback
-                       })
-                    });
+                    this._attachEvent(marker, opts.events);
                 }
                 if(opts.content){
                     this._on({
@@ -65,6 +59,16 @@
              _createMarker: function (opts) {
                 opts.map = this.gMap;
                 return new google.maps.Marker(opts);
+            },
+            _attachEvent: function(obj, events) {
+                var self = this;
+                events.forEach(function(event) {
+                    self._on({
+                        obj: obj,
+                        event: event.name,
+                        callback: event.callback
+                    })
+                });
             }
             
         };
