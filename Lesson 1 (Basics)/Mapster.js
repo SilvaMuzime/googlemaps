@@ -20,7 +20,7 @@
             _on: function(opts) {
                 var self = this;
                 google.maps.event.addListener(opts.obj, opts.event, function(e) {
-                    opts.callback.call(self, e);
+                    opts.callback.call(self, e, opts.obj);
                 });    
             },
 
@@ -37,18 +37,17 @@
                 marker = this._createMarker(opts);
                 this.markerClusterer.addMarker(marker);
                 this.markers.add(marker);
+
                 if(opts.events){
                     this._attachEvent(marker, opts.events);
                 }
+                
                 if(opts.content){
                     this._on({
                         obj: marker,
                         event: 'click',
                         callback: function() {
-                            var infoWindow = new google.maps.InfoWindow({
-                                content: opts.content
-                            });
-
+                            infoWindow.setContent(marker.content);
                             infoWindow.open(this.gMap, marker);
                         }
                     });
@@ -80,7 +79,6 @@
                     })
                 });
             }
-            
         };
         return Mapster;    
     }());
