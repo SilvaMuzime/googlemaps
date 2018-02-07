@@ -1,4 +1,5 @@
 (function(window, google, List) {
+    infoWindow = new google.maps.InfoWindow();
     
     var Mapster = (function() {
         function Mapster(element, opts) {
@@ -31,6 +32,7 @@
                     lat: opts.lat,
                     lng: opts.lng
                 };
+
 
                 marker = this._createMarker(opts);
                 this.markerClusterer.addMarker(marker);
