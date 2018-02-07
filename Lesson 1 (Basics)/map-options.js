@@ -1,4 +1,4 @@
-(function(window,google, mapster) {
+(function(window, google, mapster) {
     
     mapster.MAP_OPTIONS = {
         center: {
@@ -9,7 +9,7 @@
         disableDefaultUI: false,
         scrollwheel: true,
         draggable: true,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
         // maxZoom: 9,
         // minZoom: 5
         // cluster: {
@@ -24,8 +24,10 @@
         //             url: 'https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/src/markerclusterer.js',
         //             height: 56,
         //             width: 55
-        //         }]
+        //         }],
+        //
         //     }
+        //
         // }
         // zoomControlOptions : {
         //     position: google.maps.ControlPosition.TOP_LEFT,
@@ -38,4 +40,4 @@
         
     };
 
-}(window,google,window.Mapster || (window.Mapster = {})));
+}(window, google, window.Mapster || (window.Mapster = {})));

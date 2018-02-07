@@ -32,7 +32,7 @@
                     lat: opts.lat,
                     lng: opts.lng
                 };
-
+                
 
                 marker = this._createMarker(opts);
                 this.markerClusterer.addMarker(marker);
