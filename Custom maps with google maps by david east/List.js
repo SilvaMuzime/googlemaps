@@ -14,7 +14,7 @@
                     this.items.splice(indexOf, 1);
                 }
             },
-            find: function (callback) {
+            find: function (callback, action) {
                 var callbackReturn,
                     items = this.items,
                     matches = [];
@@ -24,6 +24,10 @@
                     if (callbackReturn) {
                         matches.push(items[i]);
                     }
+                }
+
+                if(action){
+                    action.call(this, matches);
                 }
                 return matches;
             }

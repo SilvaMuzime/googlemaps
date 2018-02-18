@@ -38,6 +38,9 @@
         return marker.id === 1;
    });
 
-   console.log(found);
+
+   map.removeBy(function (marker) {
+       return marker.id === 1;
+   })
 
 }(window, window.Mapster));

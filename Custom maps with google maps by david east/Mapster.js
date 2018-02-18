@@ -65,6 +65,13 @@
             },
             findBy: function (callback) {
                 return this.markers.find(callback);
+            },
+            removeBy: function (callback) {
+                this.markers.find(callback, function (markers) {
+                    markers.forEach(function (marker) {
+                        marker.setMap(null);
+                    });
+                })
             }
         };
 
