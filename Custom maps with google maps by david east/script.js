@@ -1,6 +1,6 @@
 (function(window, mapster) {
     'use strict';
-    // aula 9
+
 
     var options = mapster.MAP_OPTIONS,
         element = document.getElementById('map'),
@@ -16,9 +16,23 @@
             callback: function () {
                 console.log('i like');
             }
-        }
+        },
+        content: 'ce la conteudo'
     });
 
+   map.addMarker({
+        lat: 37.891854,
+        lng: -122.435887,
+        visible: true,
+        id: 18,
+        event: {
+            name: 'click',
+            callback: function () {
+
+            }
+        },
+        content: 'ce la conteudos'
+    });
 
 
 }(window, window.Mapster));

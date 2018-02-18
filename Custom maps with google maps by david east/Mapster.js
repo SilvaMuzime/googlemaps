@@ -1,8 +1,10 @@
 (function (window, google) {
     'use strict';
+    var infoWindow = new google.maps.InfoWindow();
     var Mapster = (function() {
         function Mapster(element, options) {
             this.googleMaps = new google.maps.Map(element, options);
+            this.markers = [];
         }
 
         Mapster.prototype = {
@@ -31,6 +33,7 @@
                     lng: markerOptions.lng
                 };
                 marker = this._createMarker(markerOptions);
+                this._addMarker(marker);
 
                 if(markerOptions.event){
                     this._on({
@@ -40,6 +43,35 @@
                     });
                 }
 
+                if(markerOptions.content){
+                    this._on({
+                        object: marker,
+                        event: 'click',
+                        callback: function() {
+                            infoWindow.setContent(markerOptions.content);
+                            infoWindow.open(this.googleMaps, marker);
+                        }
+                    });
+                }
+                return marker;
+            },
+            _addMarker: function (marker) {
+                this.markers.push(marker);
+            },
+            _removeMarker: function (marker) {
+                var indexOf = this.markers.indexOf(marker);
+
+                if(indexOf !== -1){
+                    this.markers.splice(indexOf, 1);
+                    marker.setMap(null);
+                }
+            },
+            findMarkerByLat: function (lat) {
+                for (var i = 0; i < this.markers.length; i++){
+                    var marker = this.markers[i];
+                    if(marker.position.lat() === lat)
+                        return marker;
+                }
             }
         };
 
