@@ -1,4 +1,5 @@
 (function (window) {
+    'use strict';
     var List = (function () {
         function List() {
             this.items = [];

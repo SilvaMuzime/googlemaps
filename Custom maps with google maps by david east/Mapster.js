@@ -79,9 +79,17 @@
                 return this.markers.find(callback);
             },
             removeBy: function (callback) {
+                var self = this;
+
                 this.markers.find(callback, function (markers) {
                     markers.forEach(function (marker) {
-                        marker.setMap(null);
+                        if(self.markerClusterer){
+                            self.markerClusterer.removeMarker(marker);
+                        }
+                        else {
+                            marker.setMap(null);
+                        }
+
                     });
                 })
             }
