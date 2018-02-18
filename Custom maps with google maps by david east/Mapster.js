@@ -23,13 +23,9 @@
             },
             _on: function (markerOptions) {
                 var self = this;
-                google.maps.event.addListener(markerOptions.object,markerOptions.event,function (e) {
-                    markerOptions.callback.call(self, e);
+                google.maps.event.addListener(markerOptions.object, markerOptions.event, function (e) {
+                    markerOptions.callback.call(self, e, markerOptions.object);
                 });
-            },
-            _createMarker: function (markerOptions) {
-              markerOptions.map = this.googleMaps;
-              return new google.maps.Marker(markerOptions);
             },
             addMarker: function (markerOptions) {
                 var marker,
@@ -47,13 +43,7 @@
                 this._addmarker(marker);
 
                 if(markerOptions.events){
-                    markerOptions.events.forEach(function (event) {
-                        self._on({
-                            object: marker,
-                            event: event.name,
-                            callback: event.callback
-                        });
-                    });
+                    this._attachEvents(marker, markerOptions.events)
                 }
 
                 if(markerOptions.content){
@@ -67,6 +57,21 @@
                     });
                 }
                 return marker;
+            },
+            _createMarker: function (markerOptions) {
+              markerOptions.map = this.googleMaps;
+              return new google.maps.Marker(markerOptions);
+            },
+            _attachEvents: function (object, events) {
+                var self = this;
+
+                events.forEach(function (event) {
+                    self._on({
+                        object: object,
+                        event: event.name,
+                        callback: event.callback
+                    })
+                })
             },
             _addmarker: function (marker) {
                 this.markers.add(marker);

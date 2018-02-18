@@ -10,36 +10,28 @@
         lat: 37.891854,
         lng: -122.435887,
         visible: true,
-        id: 1,
-        events:[{
-            name: 'dragend',
-            callback: function () {
-                console.log('drag me')
-            }
-        },{
-            name: 'click',
-            callback: function () {
-                console.log('click me')
-            }
-        }],
-        content: 'ce la conteudos',
-        draggable: true
-    });
-    map.addMarker({
-        lat: 37.891854,
-        lng: -122.435887,
-        visible: true,
         id: 3,
         events:[{
             name: 'dragend',
-            callback: function () {
-                console.log('drag me')
+            callback: function (e, marker) {
+                console.log(e);
             }
         },{
             name: 'click',
-            callback: function () {
-                console.log('click me')
+            callback: function (e, marker) {
+                console.log(e);
             }
+        }, {
+            name: 'mouseover',
+            callback: function (e, marker) {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+            }
+        },{
+            name: 'mouseout',
+            callback: function (e, marker) {
+                marker.setAnimation(null);
+            }
+
         }],
         content: 'ce la conteudos',
         draggable: true
