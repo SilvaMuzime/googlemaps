@@ -32,7 +32,9 @@
               return new google.maps.Marker(markerOptions);
             },
             addMarker: function (markerOptions) {
-                var marker;
+                var marker,
+                    self = this;
+
                 markerOptions.position = {
                     lat: markerOptions.lat,
                     lng: markerOptions.lng
@@ -44,11 +46,13 @@
                 }
                 this._addmarker(marker);
 
-                if(markerOptions.event){
-                    this._on({
-                        object: marker,
-                        event: markerOptions.event.name,
-                        callback: markerOptions.event.callback
+                if(markerOptions.events){
+                    markerOptions.events.forEach(function (event) {
+                        self._on({
+                            object: marker,
+                            event: event.name,
+                            callback: event.callback
+                        });
                     });
                 }
 
@@ -75,7 +79,7 @@
                         return marker;
                 }
             },
-            findBy: function (callback) {
+            findBy:  function (callback) {
                 return this.markers.find(callback);
             },
             removeBy: function (callback) {
