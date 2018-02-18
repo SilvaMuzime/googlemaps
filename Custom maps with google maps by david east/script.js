@@ -24,7 +24,7 @@
         lat: 37.891854,
         lng: -122.435887,
         visible: true,
-        id: 18,
+        id: 1,
         event: {
             name: 'click',
             callback: function () {
@@ -34,5 +34,10 @@
         content: 'ce la conteudos'
     });
 
+   var found = map.findBy(function (marker) {
+        return marker.id === 1;
+   });
+
+   console.log(found);
 
 }(window, window.Mapster));

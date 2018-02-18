@@ -1,10 +1,10 @@
-(function (window, google) {
+(function (window, google, List) {
     'use strict';
     var infoWindow = new google.maps.InfoWindow();
     var Mapster = (function() {
         function Mapster(element, options) {
             this.googleMaps = new google.maps.Map(element, options);
-            this.markers = [];
+            this.markers = List.create();
         }
 
         Mapster.prototype = {
@@ -33,7 +33,7 @@
                     lng: markerOptions.lng
                 };
                 marker = this._createMarker(markerOptions);
-                this._addMarker(marker);
+                this.markers.add(marker);
 
                 if(markerOptions.event){
                     this._on({
@@ -55,23 +55,16 @@
                 }
                 return marker;
             },
-            _addMarker: function (marker) {
-                this.markers.push(marker);
-            },
-            _removeMarker: function (marker) {
-                var indexOf = this.markers.indexOf(marker);
-
-                if(indexOf !== -1){
-                    this.markers.splice(indexOf, 1);
-                    marker.setMap(null);
-                }
-            },
             findMarkerByLat: function (lat) {
                 for (var i = 0; i < this.markers.length; i++){
                     var marker = this.markers[i];
+
                     if(marker.position.lat() === lat)
                         return marker;
                 }
+            },
+            findBy: function (callback) {
+                return this.markers.find(callback);
             }
         };
 
@@ -84,4 +77,4 @@
     };
 
     window.Mapster = Mapster;
-}(window, google));
+}(window, google, List));
