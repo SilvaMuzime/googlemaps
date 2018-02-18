@@ -5,6 +5,11 @@
         function Mapster(element, options) {
             this.googleMaps = new google.maps.Map(element, options);
             this.markers = List.create();
+
+            if(options.cluster){
+                this.markerClusterer = new MarkerClusterer(this.googleMaps, [], options.cluster.options);
+            }
+
         }
 
         Mapster.prototype = {
@@ -33,7 +38,11 @@
                     lng: markerOptions.lng
                 };
                 marker = this._createMarker(markerOptions);
-                this.markers.add(marker);
+
+                if(this.markerClusterer){
+                    this.markerClusterer.addMarker(marker);
+                }
+                this._addmarker(marker);
 
                 if(markerOptions.event){
                     this._on({
@@ -54,6 +63,9 @@
                     });
                 }
                 return marker;
+            },
+            _addmarker: function (marker) {
+                this.markers.add(marker);
             },
             findMarkerByLat: function (lat) {
                 for (var i = 0; i < this.markers.length; i++){
