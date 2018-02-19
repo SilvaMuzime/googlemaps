@@ -1,10 +1,32 @@
-(function(window, mapster) {
+(function(window, mapster, firebase) {
     'use strict';
 
 
     var options = mapster.MAP_OPTIONS,
         element = document.getElementById('map'),
         map = mapster.create(element, options);
+
+    var config = {
+            apiKey: "AIzaSyAmplRymWDI6re-CADdUU-cusooKgkumN4",
+            authDomain: "psi-mozambique.firebaseapp.com",
+            databaseURL: "https://psi-mozambique.firebaseio.com",
+            projectId: "psi-mozambique",
+            storageBucket: "psi-mozambique.appspot.com",
+            messagingSenderId: "161813301285"
+        },
+        child = 'agentes';
+
+    var db = firebase.create(config, child);
+    var locations = db.fetchAll();
+
+    locations.forEach(function (data) {
+        map.addMarker({
+            lat: data.latitude,
+            lng: data.longitude,
+            visible: true
+        });
+
+    });
 
     map.addMarker({
         lat: 37.891854,
@@ -44,6 +66,7 @@
 
    map.removeBy(function (marker) {
        return marker.id === 1;
-   })
+   });
 
-}(window, window.Mapster));
+    console.log(locations);
+}(window, window.Mapster, window.Firebase));
