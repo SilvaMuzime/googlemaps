@@ -17,7 +17,6 @@
         child = 'agentes';
 
     var db = firebase.create(config, child);
-    var locations = db.fetchAll();
 
     locations.forEach(function (data) {
         map.addMarker({
